@@ -20,11 +20,12 @@ def setUp():
     print(f'--------------------***-----------------------')
     driver.maximize_window()
     driver.implicitly_wait(30)
-    driver.get(locators.moodle_url)
+    driver.get(locators.advshoppingcart_homepage_url)
 
     if driver.current_url == locators.advshoppingcart_homepage_url and locators.advshoppingcart_home_page_title in driver.title:
         print(f'Yey! {locators.app} App website launched successfully!!!')
         print(f'{locators.app} Homepage URL: {driver.current_url}, Homepage title: {driver.title}')
+        print(driver.title)
         sleep(1)
     else:
         print(f'{locators.app} did not launch. Check your code or application!')

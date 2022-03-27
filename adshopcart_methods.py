@@ -128,7 +128,9 @@ def log_in():
 def delete_test_account():
     driver.find_element(By.ID, 'menuUser').click()
     sleep(0.25)
-    driver.find_element(By.XPATH, '//*[@id="loginMiniTitle"]/label[contains(., "My account")]').click()
+    # driver.find_element(By.XPATH, '//h3[contains(., "MY ACCOUNT")]').click()
+    # driver.find_element(By.XPATH, '//*[@id="loginMiniTitle"]/label[contains(., "My account")]').click()
+    driver.find_element(By.CSS_SELECTOR, 'div#loginMiniTitle > label[translate="My_account"]').click()
     sleep(0.25)
     driver.find_element(By.XPATH, '//button[contains(., "Delete Account")]').click()
     sleep(0.25)
@@ -141,7 +143,6 @@ def verify_account_deleted():
     driver.find_element(By.ID, 'menuUser').click()
     sleep(1)
 
-
     driver.find_element(By.NAME, 'username').send_keys(locators.username)
     sleep(0.25)
     driver.find_element(By.NAME, 'password').send_keys(locators.password)
@@ -151,11 +152,6 @@ def verify_account_deleted():
         print(f'-----Account successfully deleted!! Account of {locators.username}------')
     else:
         print(f'--Something went wrong check the code')
-
-
-
-
-
 
 setUp()
 signup()

@@ -158,16 +158,30 @@ def verify_account_deleted():
     else:
         print(f'--Something went wrong check the code')
 
-#
-# def check_home_page():
-#     driver.get(locators.advshoppingcart_homepage_url)
-#     lst_opts = ['SPEAKERS', 'TABLETS', 'HEADPHONES', 'LAPTOPS', 'MICE']
-#     for e in lst_opts:
-#         if driver.find_element(By.XPATH, f"//span[contains(., '{e}')]").is_displayed():
-#             sleep(0.5)
-#             print(f"We can see '{e}' link on the homepage")
-#         else:
-#             print("'{element}' link is not displayed on the homepage!")
+
+def check_home_page():
+    driver.get(locators.advshoppingcart_homepage_url)
+    lst_opts1 = ['SPEAKERS', 'TABLETS', 'HEADPHONES', 'LAPTOPS', 'MICE']
+    for e in lst_opts1:
+        if driver.find_element(By.XPATH, f"//span[contains(., '{e}')]").is_displayed():
+            sleep(0.5)
+            print(f"We can see '{e}' link on the homepage")
+        else:
+            print("'{element}' link is not displayed on the homepage!")
+
+    lst_opts2 = ['SPECIAL OFFER', 'POPULAR ITEMS', 'CONTACT US']
+    for l in lst_opts2:
+        if driver.find_element(By.XPATH, f'//a[contains(., "{l}")]').is_displayed():
+            sleep(0.5)
+            driver.find_element(By.XPATH, f'//a[contains(., "{l}")]').is_displayed()
+            sleep(1)
+            driver.find_element(By.XPATH, f'//a[contains(., "{l}")]').is_displayed()
+            sleep(0.5)
+            print(f'----{l} is displayed------')
+        else:
+            print(f'----{l} does not displayed-----')
+
+
 
 
 # setUp()

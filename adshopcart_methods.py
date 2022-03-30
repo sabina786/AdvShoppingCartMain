@@ -114,52 +114,70 @@ def log_in():
     if driver.current_url == locators.advshoppingcart_homepage_url:
         print(f'---- Your are in Home Page -----')
         driver.find_element(By.ID, 'menuUser').click()
-        sleep(0.25)
+        sleep(1)
         driver.find_element(By.NAME, 'username').send_keys(locators.username)
-        sleep(0.25)
+        sleep(1)
         driver.find_element(By.NAME, 'password').send_keys(locators.password)
-        sleep(0.25)
+        sleep(2)
         driver.find_element(By.ID, 'sign_in_btnundefined').click()
-        sleep(0.25)
-        print(f' ------ Successfully login with new account -------- ')
+        sleep(2)
+        print(f'------ Successfully login with new account -------- ')
     else:
-        print(f'--- Something went wrong check your code please --------')
+        print(f'----Something went wrong check your code please --------')
 
 def delete_test_account():
     driver.find_element(By.ID, 'menuUser').click()
-    sleep(0.25)
+    sleep(1)
     # driver.find_element(By.XPATH, '//h3[contains(., "MY ACCOUNT")]').click()
     # driver.find_element(By.XPATH, '//*[@id="loginMiniTitle"]/label[contains(., "My account")]').click()
     driver.find_element(By.CSS_SELECTOR, 'div#loginMiniTitle > label[translate="My_account"]').click()
-    sleep(0.25)
+    sleep(3)
     driver.find_element(By.XPATH, '//button[contains(., "Delete Account")]').click()
-    sleep(0.25)
+    sleep(5)
     driver.find_element(By.CSS_SELECTOR, 'div.deletePopupBtn.deleteRed').click()
-    sleep(0.25)
+    sleep(3)
 
 
 
 def verify_account_deleted():
     driver.find_element(By.ID, 'menuUser').click()
-    sleep(1)
-
+    sleep(5)
     driver.find_element(By.NAME, 'username').send_keys(locators.username)
-    sleep(0.25)
+    sleep(1)
     driver.find_element(By.NAME, 'password').send_keys(locators.password)
-    sleep(0.25)
+    sleep(5)
+    driver.find_element(By.ID, 'sign_in_btnundefined').click()
+    sleep(0.5)
 
-    if driver.find_element(By.ID, 'signInResultMessage').is_displayed():
-        print(f'-----Account successfully deleted!! Account of {locators.username}------')
+    #     driver.find_element(By.ID, 'signInResultMessage').is_displayed():
+    # if driver.find_element(By.XPATH, '//label[@id = "signInResultMessage"]').text == 'Incorrect user name or password.':
+    if driver.find_element(By.XPATH, '//*[@id="signInResultMessage"]'
+                                  '[contains(., "Incorrect user name or password")]').is_displayed():
+        sleep(5)
+        print(f'-----Account successfully deleted!!Account name is {locators.username}------')
     else:
         print(f'--Something went wrong check the code')
 
-setUp()
-signup()
-check_full_name()
-check_orders()
-log_out()
-log_in()
-delete_test_account()
-verify_account_deleted()
-tearDown()
+#
+# def check_home_page():
+#     driver.get(locators.advshoppingcart_homepage_url)
+#     lst_opts = ['SPEAKERS', 'TABLETS', 'HEADPHONES', 'LAPTOPS', 'MICE']
+#     for e in lst_opts:
+#         if driver.find_element(By.XPATH, f"//span[contains(., '{e}')]").is_displayed():
+#             sleep(0.5)
+#             print(f"We can see '{e}' link on the homepage")
+#         else:
+#             print("'{element}' link is not displayed on the homepage!")
+
+
+# setUp()
+# signup()
+# check_full_name()
+# check_orders()
+# log_out()
+# log_in()
+# delete_test_account()
+# verify_account_deleted()
+# check_home_page()
+# tearDown()
 

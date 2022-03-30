@@ -15,4 +15,5 @@ class MoodleAppPositiveTestCases(unittest.TestCase):
         methods.log_in()
         methods.delete_test_account()
         methods.verify_account_deleted()
+        # methods.check_home_page()
         methods.tearDown()

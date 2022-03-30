@@ -22,3 +22,6 @@ province = fake.province()[0: 10]
 postal_code = fake.postalcode()
 
 
+
+
+

@@ -45,29 +45,29 @@ def signup():
     driver.find_element(By.ID, 'menuUser').click()
     sleep(2)
     driver.find_element(By.XPATH, '//a[contains(., "CREATE NEW ACCOUNT")]').click()
-    sleep(0.25)
+    sleep(0.5)
     driver.find_element(By.NAME, 'usernameRegisterPage').send_keys(locators.username)
-    sleep(0.25)
+    sleep(0.5)
     driver.find_element(By.NAME, 'emailRegisterPage').send_keys(locators.email)
-    sleep(0.25)
+    sleep(0.5)
     driver.find_element(By.NAME, 'passwordRegisterPage').send_keys(locators.password)
-    sleep(0.25)
+    sleep(0.5)
     driver.find_element(By.NAME, 'confirm_passwordRegisterPage').send_keys(locators.password)
-    sleep(0.25)
+    sleep(0.5)
     driver.find_element(By.NAME, 'first_nameRegisterPage').send_keys(locators.first_name)
-    sleep(0.25)
+    sleep(0.5)
     driver.find_element(By.NAME, 'last_nameRegisterPage').send_keys(locators.last_name)
-    sleep(0.25)
+    sleep(0.5)
     driver.find_element(By.NAME, 'phone_numberRegisterPage').send_keys(locators.phonenum)
-    sleep(0.25)
+    sleep(0.5)
     driver.find_element(By.NAME, 'countryListboxRegisterPage').send_keys(locators.country)
-    sleep(0.25)
+    sleep(0.5)
     driver.find_element(By.NAME, 'cityRegisterPage').send_keys(locators.city)
-    sleep(0.25)
+    sleep(0.5)
     driver.find_element(By.NAME, 'state_/_province_/_regionRegisterPage').send_keys(locators.province)
-    sleep(0.25)
+    sleep(0.5)
     driver.find_element(By.NAME, 'postal_codeRegisterPage').send_keys(locators.postal_code)
-    sleep(0.25)
+    sleep(0.5)
     driver.find_element(By.NAME, 'i_agree').click()
     sleep(0.5)
     driver.find_element(By.ID, 'register_btnundefined').click()
@@ -107,7 +107,7 @@ def log_out():
     driver.find_element(By.ID, 'menuUser').click()
     sleep(5)
     driver.find_element(By.XPATH, '//div[@id="loginMiniTitle"]/label[@translate="Sign_out"]').click()
-    sleep(0.25)
+    sleep(0.5)
 
 
 def log_in():
@@ -127,7 +127,7 @@ def log_in():
 
 def delete_test_account():
     driver.find_element(By.ID, 'menuUser').click()
-    sleep(10)
+    sleep(5)
     # driver.find_element(By.XPATH, '//h3[contains(., "MY ACCOUNT")]').click()
     # driver.find_element(By.XPATH, '//*[@id="loginMiniTitle"]/label[contains(., "My account")]').click()
     driver.find_element(By.CSS_SELECTOR, 'div#loginMiniTitle > label[translate="My_account"]').click()
@@ -170,54 +170,54 @@ def check_home_page():
             print("'{element}' link is not displayed on the homepage!")
 
     lst_opts2 = ['SPECIAL OFFER', 'POPULAR ITEMS', 'CONTACT US']
+    # for l in lst_opts2:
+    #     if driver.find_element(By.XPATH, f'//a[contains(., "{l}")]').click():
+    #         sleep(0.5)
+    #         driver.find_element(By.XPATH, f'//a[contains(., "{l}")]').is_displayed()
+    #         sleep(0.5)
+    #         if driver.find_element(By.XPATH, f"//*[self::h1 or self::h3][contains(., '{item}')]").is_displayed():
+    #         sleep(0.5)
+    #         print(f'----{l} is displayed------')
+    #     else:
+    #         print(f'----{l} does not displayed-----')
+
     for l in lst_opts2:
-        if driver.find_element(By.XPATH, f'//a[contains(., "{l}")]').click():
-            sleep(0.5)
-            driver.find_element(By.XPATH, f'//h3[contains(., "SPECIAL OFFER")]').is_displayed()
+        if driver.find_element(By.XPATH, f'//a[contains(., "{l}")]').is_displayed():
             sleep(0.5)
             driver.find_element(By.XPATH, f'//a[contains(., "{l}")]').click()
-            sleep(0.25)
-            driver.find_element(By.XPATH, f'//h3[contains(., "POPULAR ITEMS")]').is_displayed()
             sleep(1)
-            driver.find_element(By.XPATH, f'//a[contains(., "{l}")]').click()
-            sleep(0.5)
-            driver.find_element(By.XPATH, f'//h1[contains(., "CONTACT US")]').is_displayed()
-            sleep(0.5)
-            print(f'----{l} is displayed------')
-        else:
-            print(f'----{l} does not displayed-----')
-
-
-        if driver.find_element(By.XPATH, f'//span[contains(., "dvantage")]').is_displayed():
-            driver.find_element(By.XPATH, f'//span[contains(., "DEMO")]').is_displayed()
-            sleep(1)
-            print(f'------Logo is Displayed-------')
-
-            driver.find_element(By.XPATH, f'//a[contains(., "CONTACT US")]').click()
-            sleep(0.25)
-            driver.find_element(By.XPATH, f'//h1[contains(., "CONTACT US")]').is_displayed()
-            Select(driver.find_element(By.NAME, 'categoryListboxContactUs')).select_by_visible_text('Headphones')
-            sleep(0.25)
-            Select(driver.find_element(By.NAME, 'productListboxContactUs')).select_by_visible_text('Bose SoundLink Around-ear Wireless Headphones II')
-            sleep(0.5)
-            driver.find_element(By.NAME, 'emailContactUs').send_keys(locators.email)
-            sleep(0.5)
-            driver.find_element(By.NAME, 'subjectTextareaContactUs').send_keys(locators.subject)
-            sleep(0.5)
-            driver.find_element(By.ID, 'send_btnundefined').click()
-            sleep(0.5)
-            if driver.find_element(By.XPATH, '//*[@id="registerSuccessCover"]/div/a').is_displayed():
+            if driver.find_element(By.XPATH, f"//*[self::h1 or self::h3][contains(., '{l}')]").is_displayed():
                 sleep(0.5)
-                print('--- Continue shopping button is displayed.------')
+                print(f'****{l} is displayed.****')
             else:
-                print('-----Something went wrong check the code for continue shopping button--------')
+                print(f'{l} is not displayed.')
 
+    if driver.find_element(By.XPATH, f'//span[contains(., "dvantage")]').is_displayed()\
+            and driver.find_element(By.XPATH, f'//span[contains(., "DEMO")]').is_displayed():
+        sleep(1)
+        print(f'------Logo is Displayed-------')
+    else:
+        print(f'---The logo is not displayed------')
 
-
-
-
-
-
+    driver.find_element(By.XPATH, f'//a[contains(., "CONTACT US")]').click()
+    sleep(0.5)
+    driver.find_element(By.XPATH, f'//h1[contains(., "CONTACT US")]').is_displayed()
+    Select(driver.find_element(By.NAME, 'categoryListboxContactUs')).select_by_visible_text('Headphones')
+    sleep(0.5)
+    Select(driver.find_element(By.NAME, 'productListboxContactUs')).select_by_visible_text('Bose SoundLink Around-ear Wireless Headphones II')
+    sleep(0.5)
+    driver.find_element(By.NAME, 'emailContactUs').send_keys(locators.email)
+    sleep(0.5)
+    driver.find_element(By.NAME, 'subjectTextareaContactUs').send_keys(locators.subject)
+    sleep(0.5)
+    driver.find_element(By.ID, 'send_btnundefined').click()
+    sleep(0.5)
+    if driver.find_element(By.XPATH, '//*[@id="registerSuccessCover"]/div/a').is_displayed():
+        sleep(0.5)
+        driver.find_element(By.XPATH, '//*[@id="registerSuccessCover"]/div/a').click()
+        print('-----Continue shopping button is displayed.------')
+    else:
+        print('-----Something went wrong check the code for continue shopping button--------')
 
 
 

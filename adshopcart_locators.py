@@ -21,7 +21,7 @@ address = fake.address().replace("\n", " ")[0: 50]
 province = fake.province()[0: 10]
 postal_code = fake.postalcode()
 
-
+subject = f'--Todays date is:- {datetime.datetime.now()}. '
 
 
 

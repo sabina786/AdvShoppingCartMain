@@ -91,11 +91,11 @@ def check_full_name():
 
 def check_orders():
     driver.find_element(By.ID, 'menuUser').click()
-    sleep(0.25)
+    sleep(0.5)
     driver.find_element(By.XPATH, '//*[@id="loginMiniTitle"]/label[contains(., "My orders")]').click()
-    sleep(0.25)
+    sleep(0.5)
     assert driver.find_element(By.XPATH, '//label[contains(., "No orders")]').is_displayed()
-    sleep(0.25)
+    sleep(3)
     no_order = driver.find_element(By.XPATH, '//label[contains(., "No orders")]').is_displayed()
     if no_order == True:
         print(f'-----There is no order-------')
@@ -105,7 +105,7 @@ def check_orders():
 
 def log_out():
     driver.find_element(By.ID, 'menuUser').click()
-    sleep(0.25)
+    sleep(5)
     driver.find_element(By.XPATH, '//div[@id="loginMiniTitle"]/label[@translate="Sign_out"]').click()
     sleep(0.25)
 
@@ -127,11 +127,11 @@ def log_in():
 
 def delete_test_account():
     driver.find_element(By.ID, 'menuUser').click()
-    sleep(1)
+    sleep(10)
     # driver.find_element(By.XPATH, '//h3[contains(., "MY ACCOUNT")]').click()
     # driver.find_element(By.XPATH, '//*[@id="loginMiniTitle"]/label[contains(., "My account")]').click()
     driver.find_element(By.CSS_SELECTOR, 'div#loginMiniTitle > label[translate="My_account"]').click()
-    sleep(3)
+    sleep(5)
     driver.find_element(By.XPATH, '//button[contains(., "Delete Account")]').click()
     sleep(5)
     driver.find_element(By.CSS_SELECTOR, 'div.deletePopupBtn.deleteRed').click()
@@ -171,15 +171,53 @@ def check_home_page():
 
     lst_opts2 = ['SPECIAL OFFER', 'POPULAR ITEMS', 'CONTACT US']
     for l in lst_opts2:
-        if driver.find_element(By.XPATH, f'//a[contains(., "{l}")]').is_displayed():
+        if driver.find_element(By.XPATH, f'//a[contains(., "{l}")]').click():
             sleep(0.5)
-            driver.find_element(By.XPATH, f'//a[contains(., "{l}")]').is_displayed()
+            driver.find_element(By.XPATH, f'//h3[contains(., "SPECIAL OFFER")]').is_displayed()
+            sleep(0.5)
+            driver.find_element(By.XPATH, f'//a[contains(., "{l}")]').click()
+            sleep(0.25)
+            driver.find_element(By.XPATH, f'//h3[contains(., "POPULAR ITEMS")]').is_displayed()
             sleep(1)
-            driver.find_element(By.XPATH, f'//a[contains(., "{l}")]').is_displayed()
+            driver.find_element(By.XPATH, f'//a[contains(., "{l}")]').click()
+            sleep(0.5)
+            driver.find_element(By.XPATH, f'//h1[contains(., "CONTACT US")]').is_displayed()
             sleep(0.5)
             print(f'----{l} is displayed------')
         else:
             print(f'----{l} does not displayed-----')
+
+
+        if driver.find_element(By.XPATH, f'//span[contains(., "dvantage")]').is_displayed():
+            driver.find_element(By.XPATH, f'//span[contains(., "DEMO")]').is_displayed()
+            sleep(1)
+            print(f'------Logo is Displayed-------')
+
+            driver.find_element(By.XPATH, f'//a[contains(., "CONTACT US")]').click()
+            sleep(0.25)
+            driver.find_element(By.XPATH, f'//h1[contains(., "CONTACT US")]').is_displayed()
+            Select(driver.find_element(By.NAME, 'categoryListboxContactUs')).select_by_visible_text('Headphones')
+            sleep(0.25)
+            Select(driver.find_element(By.NAME, 'productListboxContactUs')).select_by_visible_text('Bose SoundLink Around-ear Wireless Headphones II')
+            sleep(0.5)
+            driver.find_element(By.NAME, 'emailContactUs').send_keys(locators.email)
+            sleep(0.5)
+            driver.find_element(By.NAME, 'subjectTextareaContactUs').send_keys(locators.subject)
+            sleep(0.5)
+            driver.find_element(By.ID, 'send_btnundefined').click()
+            sleep(0.5)
+            if driver.find_element(By.XPATH, '//*[@id="registerSuccessCover"]/div/a').is_displayed():
+                sleep(0.5)
+                print('--- Continue shopping button is displayed.------')
+            else:
+                print('-----Something went wrong check the code for continue shopping button--------')
+
+
+
+
+
+
+
 
 
 
